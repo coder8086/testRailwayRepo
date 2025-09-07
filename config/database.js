@@ -1,31 +1,21 @@
 const { Sequelize } = require('sequelize');
 const dotenv = require('dotenv');
 
-
 dotenv.config();
 
-
 const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASS,
-    {
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT || 3306,
-        dialect: 'mysql',
-        logging: false,
-        dialectOptions: {
-            // Railway requires SSL for some MySQL instances
-            ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined
-        },
-        pool: {
-            max: 5,
-            min: 0,
-            acquire: 30000,
-            idle: 10000
-        }
+  process.env.MYSQLDATABASE,      // DB name
+  process.env.MYSQLUSER,          // DB user
+  process.env.MYSQLPASSWORD,      // DB password
+  {
+    host: process.env.MYSQLHOST,  // DB host
+    port: process.env.MYSQLPORT || 3306,
+    dialect: 'mysql',
+    logging: false,
+    dialectOptions: {
+      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined
     }
+  }
 );
-
 
 module.exports = sequelize;

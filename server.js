@@ -5,7 +5,7 @@ dotenv.config({ quiet: true }); // load local .env (quiet mode)
 const app = require("./app");
 
 // Import Sequelize config (db.js)
-const sequelize = require("./db");
+const sequelize = require("./config/database");
 
 const PORT = process.env.PORT || 3000;
 
